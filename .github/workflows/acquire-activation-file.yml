@@ -6,7 +6,7 @@ jobs:
     name: Request manual activation file 🔑
     runs-on: ubuntu-latest
     env:
-      unityVersion: 2021.2.5f1
+      unityVersion: 2020.1.1f1
     steps:
       - name: Request manual activation file
         id: getManualLicenseFile
