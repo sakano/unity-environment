@@ -1,4 +1,4 @@
-name: Test and Build
+name: Test
 
 on: [push, pull_request]
 
@@ -34,18 +34,3 @@ jobs:
         with:
           name: Test results
           path: artifacts
-
-      # Build
-      - name: Build project
-        uses: game-ci/unity-builder@v2
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-        with:
-          targetPlatform: StandaloneWindows64
-          allowDirtyBuild: true
-
-      # Output Build Result
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Build
-          path: build
