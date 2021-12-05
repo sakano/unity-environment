@@ -29,12 +29,6 @@ jobs:
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
 
-      # Output Test Result
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Test results
-          path: artifacts
-
       # Build
       - name: Build project
         uses: game-ci/unity-builder@v2
@@ -42,6 +36,12 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           targetPlatform: StandaloneWindows64
+
+      # Output Test Result
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Test results
+          path: artifacts
 
       # Output Build Result
       - uses: actions/upload-artifact@v2
