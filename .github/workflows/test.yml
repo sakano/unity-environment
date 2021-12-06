@@ -24,15 +24,17 @@ jobs:
       # Test
       - name: Run tests
         uses: game-ci/unity-test-runner@v2
+        id: test-runner
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           testMode: All
+          artifactsPath: CodeCoverage
           customParameters: -debugCodeOptimization -enableCodeCoverage -coverageResultsPath ./CodeCoverage -coverageOptions generateHtmlReport;generateBadgeReport;generateAdditionalMetrics
 
       # Output Test Result
       - uses: actions/upload-artifact@v2
         with:
           name: Test results
-          path: artifacts
+          path: ${{ steps.test-runner.outputs.artifactsPath }}
